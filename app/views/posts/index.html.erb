@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <div>
+    <%= link_to "Create New Community", new_community_path, class: "text-lg px-3 py-2 text-white bg-blue-500 rounded" %>
+  </div>
+<% end %>
+<% if @communities.size > 0 %>
+  <% @communities.each do |community| %>
+    <div class="border px-2 py-4">
+    <h1 class="text-xl font-bold"><%= link_to community.name, community %></h1>
+    <%= simple_format community.rules %>
+    </div>
+  <% end %>
+<% else %>
+  <div> <i>No communities to display</i> </div>
+<% end %>

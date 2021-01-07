@@ -1,0 +1,15 @@
+Welcome to r/<%= @community.url %>!
+<div class="flex">
+  <div class="flex-grow">
+    <div> <%= @community.name %></div>
+    <div><%= @community.rules %></div>
+  </div>
+  <div>
+    <%= link_to "New Post", new_community_post_path(@community), class: "text-lg px-3 py-2 text-white bg-blue-500 rounded" %>
+  </div>
+</div>
+<div>
+  <% @posts.each do |post| %>
+    <div class="px-4 py-2 border"><%= post.title %>: <%= post.body %></div>
+  <% end %>
+</div>

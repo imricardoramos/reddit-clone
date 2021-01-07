@@ -1,0 +1,9 @@
+<%= form_for @community do |form| %>
+  <%= label_tag :name %>
+  <%= form.text_field :name %>
+  <%= label_tag :url %>
+  <%= form.text_field :url %>
+  <%= label_tag :rules %>
+  <%= form.text_field :rules %>
+  <%= form.submit "Submit" %>
+<% end %>

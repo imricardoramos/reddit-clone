@@ -1,0 +1,55 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<% end %>
+<div class="container mx-auto">
+  <div class="font-bold text-xl py-3">Trending Today</div>
+  <div class="flex -m-2">
+  <% (1..4).each do %>
+    <div class="w-1/4 bg-black rounded-lg h-48 m-2 p-3 relative">
+      <div class="font-bold text-xl text-white pt-16">Title</div>
+      <div class="text-white">Lorem ipsum dolor sit amet adis spli...</div>
+      <div class="text-white">r/community</div>
+    </div>
+  <% end %>
+  </div>
+  <div class="font-bold text-xl py-3">Popular Posts</div>
+  <div class="flex">
+    <!-- Popular Posts -->
+    <div class="w-3/4 mr-4">
+    <% @posts.each do |post| %> 
+      <div class="mb-4 rounded flex overflow-hidden">
+        <!-- Voting -->
+        <div class="bg-gray-100 text-center px-2 pt-2">
+          <div><i class="fas fa-arrow-up"></i></div>
+          <div><b>N</b></div>
+          <div><i class="fas fa-arrow-down"></i></div>
+        </div>
+        <!-- /Voting -->
+        <%= link_to community_post_path(post.community_id, post) do %>
+        <div class="p-1 bg-white flex-grow">
+          <div class=""><b>r/<%= post.community.name %></b> · Posted by u/<%= post.user.username %> Time ago</div>
+          <div class="font-bold text-2xl"><%= post.title %></div>
+          <div>
+            <a href="" class="mx-1"><i class="px-1 fas fa-comment-alt"></i>N Comments</a>
+            <a href="" class="mx-1"><i class="px-1 fas fa-share"></i>Share</a>
+            <a href="" class="mx-1"><i class="px-1 fas fa-bookmark"></i>Save</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+    </div>
+    <!-- /Popular Posts -->
+    <!-- Top Growing Communities -->
+    <div class="w-1/4">
+      <div class="bg-white p-3">
+        <div class="font-bold text-xl">Up-and-coming Communities</div>
+        <% @communities.each do |community| %>
+          <div class="border-b px-4 py-4"><%= link_to "r/#{community.name}", community_path(community.id) %></div>
+        <% end %>
+        <%= link_to "View All", communities_path, class: "text-lg px-3 py-2 text-white bg-blue-500 rounded" %>
+      </div>
+    </div>
+    <!-- /Top Growing Communities -->
+  </div>
+</div>
